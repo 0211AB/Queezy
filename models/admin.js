@@ -21,12 +21,6 @@ const AdminSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  picture: {
-    type: String
-  },
-  id: {
-    type:String,
-  },
   tokens: [
     {
       token: {

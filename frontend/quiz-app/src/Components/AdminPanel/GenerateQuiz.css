@@ -1,0 +1,12 @@
+.centered{
+    text-align: center;
+}
+
+.input-field select{
+    width:15rem;
+}
+.create-test-btn{
+    margin-top:3rem;
+    font-size:2rem;
+    text-align: center;
+}

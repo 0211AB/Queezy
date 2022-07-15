@@ -1,0 +1,50 @@
+.box-container .box {
+  background: #fff;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 3rem;
+}
+
+.box-container .box h3 {
+  font-size: 25px;
+  padding: 17px 0;
+  color: var(--darkOne);
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.box-container .box .price {
+  color: #fff;
+  background: #64bcf4;
+  font-weight: bolder;
+  font-size: 50px;
+  text-align: center;
+}
+
+.box-container .box .price.year {
+  display: none;
+}
+
+.box-container .box .list {
+  margin: 15px 0;
+}
+
+.box-container .box .list p {
+  text-align: center;
+  padding: 7px 0;
+  font-size: 17px;
+  color: #666;
+}
+
+.quizzes-title {
+  margin-top: 1rem;
+}
+
+.box-container .box .btn {
+  margin: 20px;
+  display: block;
+  font-size: 17px;
+  background: #5bacdf;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}

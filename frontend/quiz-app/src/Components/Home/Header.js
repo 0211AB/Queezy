@@ -28,13 +28,13 @@ const Header = () => {
         <div className="links">
           <ul>
             <li>
-              <Link to="#">Testimonials</Link>
+              <Link to="/testimonials">Testimonials</Link>
             </li>
             <li>
-              <Link to="#">Upcoming Quizzes</Link>
+              <Link to="/quizzes">Upcoming Quizzes</Link>
             </li>
             <li>
-              <Link to="#" className="btn">
+              <Link to="/admin/signup" className="btn">
                 Sign up
               </Link>
             </li>

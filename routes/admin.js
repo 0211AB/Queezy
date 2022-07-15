@@ -7,11 +7,11 @@ const auth = require('../middleware/auth')
 
 router.post('/admin/signup', async (req, res) => {
     try {
-        var admin = new Doctor(req.body)
+        var admin = new Admin(req.body)
         const token = await admin.generateAuthToken()
         const saved_Admin = await admin.save()
 
-        res.status(201).json({token,'Name':saved_Admin.name})
+        res.status(201).json({token,'id':saved_Admin._id})
     }
     catch (e) {
         res.status(404).json(e)
@@ -21,12 +21,12 @@ router.post('/admin/signup', async (req, res) => {
 
 router.post('/admin/login', async (req, res) => {
     try {
+        //console.log(req.body)
         const password = req.body.password
         const email = req.body.email
 
-        //console.log(password,registrationNumber)
-
         const admin = await Admin.findOne({ email })
+        console.log(admin)
         if (!admin)
             res.status(400).json({ "Error": "No Such User Found" })
         else {
@@ -36,7 +36,7 @@ router.post('/admin/login', async (req, res) => {
             if (isPasswordValid) {
                 ///console.log(doctor.tokens)
                 const token = await admin.generateAuthToken()
-                const saved_Admin = await doctor.save()
+                const saved_Admin = await admin.save()
                 //console.log(saved_Doctor)
 
                 res.status(200).json({ token, 'Name': saved_Admin.name})
@@ -54,44 +54,18 @@ router.post('/admin/login', async (req, res) => {
 
 })
 
-router.get('/admin/logout', auth, async (req, res) => {
+router.get('/admin/:id', auth, async (req, res) => {
     try {
+        const adminId = req.params.id
 
-        const name = req.name
-
-        const admin = await Admin.findOne({ name })
+        const admin = await Admin.findOne({ id:adminId })
         if (!admin)
-            res.status(404).json({ "Error": "Admin not found" })
-        else {
-
-            admin.tokens = []
-            await Admin.save()
-
-            res.status(200).json({ "Message": "Logged Out succesfully!!" })
-
-        }
-    }
-    catch (e) {
-        res.status(404).json(e)
-    }
-})
-
-router.get('/doctor/:rno', auth, async (req, res) => {
-    try {
-        const regNo = req.params.rno
-
-        const doctor = await Doctor.findOne({ registrationNumber: regNo })
-        if (!doctor)
             res.status(404).json({ "Error": "Invalid Credentials" })
         else {
             res.status(200).json({
-                'name': doctor.name,
-                'registrationNumber': doctor.registrationNumber,
-                'address': doctor.address,
-                'dob': doctor.dob,
-                'email': doctor.email,
-                'number': doctor.phoneNumber,
-                'college': doctor.college
+                'name': admin.name,
+                'id':admin.id,
+                'email': admin.email,
             })
 
         }

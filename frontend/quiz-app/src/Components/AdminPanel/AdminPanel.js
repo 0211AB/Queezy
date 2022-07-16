@@ -8,10 +8,10 @@ import GenerateQuiz from "./GenerateQuiz";
 import Tests from "./Tests";
 import Analytics from "./Analytics";
 
-import CreateQuiz from "./GenerateQuiz";
+import CreateQuiz from "./CreateQuiz";
 
 const AdminPanel = (props) => {
-  console.log(props);
+  //console.log(props);
   const params = useParams();
   const authCtx = useContext(AuthContext);
   const navigate = useNavigate();
@@ -40,32 +40,32 @@ const AdminPanel = (props) => {
 
   return (
     <>
-      <div id="mySidenav" class="sidenav">
-        <p class="logo">Queezy</p>
-        <Link to={`/admin/generate/${data.id}`} class="icon-a">
+      <div id="mySidenav" className="sidenav">
+        <p className="logo">Queezy</p>
+        <Link to={`/admin/generate/${data.id}`} className="icon-a">
           <FaArchive /> &nbsp;&nbsp;Generate Test
         </Link>
-        <Link to={`/admin/create/${data.id}`} class="icon-a">
+        <Link to={`/admin/create/${data.id}`} className="icon-a">
           <FaAddressCard /> &nbsp;&nbsp;Create Test
         </Link>
-        <Link to={`/admin/tests/${data.id}`} class="icon-a">
+        <Link to={`/admin/tests/${data.id}`} className="icon-a">
           <FaUser /> &nbsp;&nbsp;My Tests
         </Link>
-        <Link to={`/admin/analytics/${data.id}`} class="icon-a">
+        <Link to={`/admin/analytics/${data.id}`} className="icon-a">
           <FaCircle /> &nbsp;&nbsp;Analytics
         </Link>
       </div>
       <div id="main">
-        <div class="head">
-          <div class="col-div-6">
-            <div class="profile">
-              <img src={logo} class="pro-img" />
+        <div className="head">
+          <div className="col-div-6">
+            <div className="profile">
+              <img src={logo} className="pro-img" />
               <p>
                 {data.name} <span>{data.email}</span>
               </p>
             </div>
           </div>
-          <div class="clearfix"></div>
+          <div className="clearfix"></div>
         </div>
         {props.val == 1 ? <GenerateQuiz /> : <></>}
         {props.val == 2 ? <CreateQuiz /> : <></>}

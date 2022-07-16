@@ -59,45 +59,45 @@ const AdminSignup = () => {
 
   return (
     <>
-      <div class="containerf">
-        <div class="forms-container">
-          <div class="signin-signup">
-            <form class="sign-in-form" onSubmit={submitHandler}>
-              <h2 class="title">Sign in</h2>
-              <div class="input-field">
-                <i class="fas fa-user"></i>
+      <div className="containerf">
+        <div className="forms-container">
+          <div className="signin-signup">
+            <form className="sign-in-form" onSubmit={submitHandler}>
+              <h2 className="title">Sign in</h2>
+              <div className="input-field">
+                <i className="fas fa-user"></i>
                 <input type="text" placeholder="Email" pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" required onChange={emailChangeHandler}/>
               </div>
-              <div class="input-field">
-                <i class="fas fa-lock"></i>
+              <div className="input-field">
+                <i className="fas fa-lock"></i>
                 <input type="password" placeholder="Password" minLength={8} required onChange={pwdChangeHandler}/>
               </div>
-              <input type="submit" value="Login" class="btn solid" />
-              <p class="social-text">Or Sign in with social platforms</p>
-              <div class="social-media">
-                <Link to="#" class="social-icon">
-                  <FaFacebook className="fab" />
+              <input type="submit" value="Login" className="btn solid" />
+              <p className="social-text">Or Sign in with social platforms</p>
+              <div className="social-media">
+                <Link to="#" className="social-icon">
+                  <FaFacebook classNameName="fab" />
                 </Link>
-                <Link to="#" class="social-icon">
-                  <FaGoogle className="fab"></FaGoogle>
+                <Link to="#" className="social-icon">
+                  <FaGoogle classNameName="fab"></FaGoogle>
                 </Link>
               </div>
             </form>
           </div>
         </div>
 
-        <div class="panels-container">
-          <div class="panel left-panel">
-            <div class="content">
+        <div className="panels-container">
+          <div className="panel left-panel">
+            <div className="content">
               <h3>New here ?</h3>
               <p>
                 Start an exciting journey with us on Quuezy!
               </p>
-              <Link to='/admin/signup'class="btn" id="sign-up-btn">
+              <Link to='/admin/signup'className="btn" id="sign-up-btn">
                 Sign up
               </Link>
             </div>
-            <img src={log} class="image" alt="" />
+            <img src={log} className="image" alt="" />
           </div>
         </div>
       </div>

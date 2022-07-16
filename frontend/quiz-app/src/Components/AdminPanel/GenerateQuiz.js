@@ -1,17 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import {
-  FaAddressCard,
-  FaCircle,
-  FaFacebook,
-  FaGoogle,
-  FaUser,
-} from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
-import logo from "../../Images/logo.png";
-import reg from "../../Images/register.svg";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import AuthContext from "../../Store/auth-context";
-import "./AdminPanel.css";
-import './GenerateQuiz.css'
+import "./GenerateQuiz.css";
 
 const topics = [
   { id: 1, name: "Select category" },
@@ -42,33 +32,50 @@ const topics = [
 ];
 
 const GenerateQuiz = () => {
+  const params = useParams();
+  const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
-
-  const [name, setName] = useState("");
-  const [pwd, setPwd] = useState("");
-  const [email, setEmail] = useState("");
+  const [topic, setTopic] = useState("");
+  const [amount, setAmount] = useState("");
+  const [time, setTime] = useState("");
+  const [expiry, setExpiry] = useState(new Date());
   const [data, setData] = useState(null);
 
-  const navigate = useNavigate();
-  const nameChangeHandler = (e) => {
-    setName(e.target.value);
-  };
-  const emailChangeHandler = (e) => {
-    setEmail(e.target.value);
+  const topicChangeHandler = (e) => {
+    setTopic(e.target.value);
   };
 
-  const pwdChangeHandler = (e) => {
-    setPwd(e.target.value);
+  const amountChangeHandler = (e) => {
+    setAmount(e.target.value);
+  };
+
+  const timeChangeHandler = (e) => {
+    setTime(e.target.value);
+  };
+
+  const expiryChangeHandler = (e) => {
+    setExpiry(e.target.value);
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setData({
+      id: params.id,
+      topic,
+      expiry,
+      time,
+      amount,
+    });
   };
 
   useEffect(() => {
     const sendData = async () => {
-      console.log(data);
-      const res = await fetch("http://localhost:8000/patient/signup", {
+      const res = await fetch("http://localhost:8000/admin/generate-test", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${authCtx.token}`,
         },
       });
 
@@ -79,54 +86,35 @@ const GenerateQuiz = () => {
       }
 
       if (res.status === 201) {
-        authCtx.login(datares.token);
-        navigate(`/patient/${datares.id}`);
+        navigate(`/admin/tests/${params.id}`);
       }
     };
 
     if (data !== null) sendData();
   }, [data]);
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    setData({
-      name: name,
-      password: pwd,
-      email: email,
-    });
-  };
-
-  const [tests, setTests] = useState([]);
-  const [modalIsOpen, setmodalIsOpen] = useState(false);
-  const [topic, settopic] = useState("");
-  const [amount, setamount] = useState("");
-  const [time, settime] = useState("");
-  const [expiry, setexpiry] = useState(new Date());
   return (
     <>
       <div className="big-title">
-        <h2 className='centered'>Fill In the details to create a quiz !!</h2>
+        <h2 className="centered">Fill In the details to generate a quiz !!</h2>
       </div>
       <form className="sign-in-form" onSubmit={submitHandler}>
-      <div className="input-field">
-      <i className="fas fa-lock"></i>
-            <select
-              onChange={(e) => settopic(e.target.value.toString())}
-              required
-            >
-              {topics.map((obj) => (
-                <option key={obj.id} value={obj.id}>
-                  {obj.name}
-                </option>
-              ))}
-            </select>
-            </div>
         <div className="input-field">
-        <i className="fas fa-lock"></i>
+          <i className="fas fa-lock"></i>
+          <select onChange={topicChangeHandler} required>
+            {topics.map((obj) => (
+              <option key={obj.id} value={obj.id}>
+                {obj.name}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="input-field">
+          <i className="fas fa-lock"></i>
           <input
             type="number"
             placeholder="Enter Number of Questions"
-            onChange={nameChangeHandler}
+            onChange={amountChangeHandler}
             required
           />
         </div>
@@ -135,7 +123,7 @@ const GenerateQuiz = () => {
           <input
             type="text"
             placeholder="Time Duration (Mins)"
-            onChange={pwdChangeHandler}
+            onChange={timeChangeHandler}
             required
           />
         </div>
@@ -144,11 +132,11 @@ const GenerateQuiz = () => {
           <input
             type="date"
             placeholder="Expiry"
-            onChange={pwdChangeHandler}
+            onChange={expiryChangeHandler}
             required
           />
         </div>
-          <input class="btn create-test-btn" value="Create Test"></input>
+        <input className="btn create-test-btn" type="submit" value="Create Test"></input>
       </form>
     </>
   );

@@ -29,7 +29,7 @@ export const App = () => {
             <Route path='/admin/tests/:id' element={authCtx.isLoggedIn ? <AdminPanel val="3" /> : <Navigate to='/admin/login' />}></Route>
             <Route path='/admin/generate/:id' element={authCtx.isLoggedIn ? <AdminPanel val="1"/> : <Navigate to='/admin/login' />}></Route>
             <Route path='/admin/analytics/:id' element={authCtx.isLoggedIn ? <AdminPanel val="4"/> : <Navigate to='/admin/login' />}></Route>
-            <Route path='/admin/:qid' element={authCtx.isLoggedIn ? <QuizDetails /> : <Navigate to='/admin/login' />}></Route>
+            <Route path='/:qid' element={<QuizDetails/>}></Route>
         </Routes >
     )
 }

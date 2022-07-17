@@ -18,7 +18,7 @@ const resultSchema = new Schema({
   },
   questionsCorrect: [
     {
-      type: String,
+      type: Number,
     },
   ],
   timePerAnswer: {

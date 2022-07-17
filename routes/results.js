@@ -6,13 +6,14 @@ const Quiz = require("../models/quiz");
 
 router.post("/result-score", async (req, res) => {
   try {
-    //console.log(req.body);
+    console.log(req.body);
     const quiz = req.body.id;
     const name = req.body.name;
     const score = req.body.score;
-    const questionsCorrect = req.body.questionCorrect;
+    const questionsCorrect = req.body.questionsCorrect;
     const timePerAnswer = req.body.times;
 
+    console.log(typeof questionsCorrect[0])
     const result = {
       quiz,
       name,
@@ -23,6 +24,8 @@ router.post("/result-score", async (req, res) => {
 
     var resultS =new Result(result)
     const savedRes=await resultS.save();
+
+    console.log(savedRes)
 
     res.status(201).json({savedRes});
 

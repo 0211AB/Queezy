@@ -49,7 +49,7 @@ const Quiz = (props) => {
       }
 
       if (res.status === 201) {
-        navigate(`/results/${datares.savedRes._id}`, { replace: true });
+        navigate(`/results/${datares.savedRes._id}`, { state:datares, replace: true });
       }
     }
 

@@ -6,6 +6,7 @@ import AdminPanel from "./Components/AdminPanel/AdminPanel";
 import AdminLogin from "./Components/AdminLogin/AdminLogin";
 import AdminSignup from "./Components/AdminSignup/AdminSignup";
 import QuizDetails from "./Components/QuizDetails/QuizDetails";
+import Result from './Components/Result/Result'
 
 import AuthContext from "./Store/auth-context";
 
@@ -75,6 +76,7 @@ export const App = () => {
         }
       ></Route>
       <Route path="qid/:id" element={<Quiz />}></Route>
+      <Route path="results/:id" element={<Result />}></Route>
     </Routes>
   );
 };

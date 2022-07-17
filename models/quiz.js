@@ -29,6 +29,13 @@ const quizSchema = new Schema(
       type: Date,
       required: true,
     },
+    ratings:[
+      {
+        rating:{
+          type:Number
+        }
+      }
+    ],
     questions: [
       {
         category: {
@@ -60,6 +67,10 @@ const quizSchema = new Schema(
 );
 
 quizSchema.pre("save", async function (next) {
+
+  if(!this.isModified('uuid'))
+      return next();
+      
   const userId = uuidv4()
   this.uuid = userId.toString().replace("-","").substring(0,8);
   console.log(this.uuid)

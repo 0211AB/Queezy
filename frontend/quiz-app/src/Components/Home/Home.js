@@ -24,18 +24,19 @@ const Home = () => {
 
   useEffect(() => {
     const sendData = async () => {
-      const res = await fetch("http://localhost:8000/quiz/:qid", {
-        method: "POST",
-        body: JSON.stringify(data),
+      console.log(data.quizId);
+      const res = await fetch(`http://localhost:8000/quiz/${data.quizId}`, {
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
       });
 
       const quizRes = await res.json();
+      console.log(res);
 
       if (res.status === 400) {
-        navigate(`/quiz/${quizRes.qid}`)
+        navigate(`/`);
       }
 
       if (res.status === 200) {
@@ -48,37 +49,34 @@ const Home = () => {
 
   return (
     <main>
-      <div className="big-wrapper light">
-        <img src={shape} alt="" className="shape" />
-        <Header />
-        <div className="showcase-area">
-          <div className="container">
-            <div className="left">
-              <div className="big-title">
-                <h1>SignUp now to create you own quiz .</h1>
-                <h1>Start Exploring now !!</h1>
+      <Header />
+      <div className="showcase-area">
+        <div className="container">
+          <div className="left">
+            <div className="big-title centered">
+              <h1>SignUp now to create you own quiz .</h1>
+              <h1>Start Exploring now !!</h1>
+            </div>
+            <form className="quiz-id-form" onSubmit={submitHandler}>
+              <div>
+                <input
+                  type="text"
+                  value={qid}
+                  placeholder="Enter Quiz ID"
+                  onChange={qidChangeHandler}
+                  required
+                />
+                <input
+                  type="submit"
+                  value="Start Quiz"
+                  className="btn btn-form"
+                />
               </div>
-              <form className="quiz-id-form" onSubmit={submitHandler}>
-                <div>
-                  <input
-                    type="text"
-                    value={qid}
-                    placeholder="Enter Quiz ID"
-                    onChange={qidChangeHandler}
-                    required
-                  />
-                  <input
-                    type="submit"
-                    value="Start Quiz"
-                    className="btn btn-form"
-                  />
-                </div>
-              </form>
-            </div>
+            </form>
+          </div>
 
-            <div className="right">
-              <img src={quiz} alt="Quiz Image" className="person" />
-            </div>
+          <div className="right">
+            <img src={quiz} alt="Quiz Image" className="person" />
           </div>
         </div>
       </div>

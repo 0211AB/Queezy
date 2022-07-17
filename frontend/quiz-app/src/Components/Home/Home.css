@@ -10,6 +10,13 @@
   transform: translateY(0) rotate(45deg);
 }
 
+.showcase-area{
+  height:80vh;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5rem;
+}
+
 .showcase-area .container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -100,5 +107,35 @@
   }
   100% {
     clip-path: circle(150% at 0 0);
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .showcase-area .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .big-title {
+    font-size: 1.2rem;
+    line-height: 1.1;
+  }
+}
+
+
+@media screen and (max-width: 700px) {
+  .showcase-area .container {
+    flex-direction: column;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .big-title {
+      font-size: 1rem;
+      line-height: 0.8;
+    }
   }
 }

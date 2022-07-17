@@ -44,4 +44,30 @@ min-height: 100vh !important;
   .quiz-id-form2 .btn-form {
     border-radius: 0 16px 16px 0;
   }
+
   
+  
+  @media (max-width: 800px) {
+    .rightP{
+      display:none
+    }
+
+    .details{
+      font-size: 1.1rem !important;
+      line-height: 1.1rem !important;
+    }
+  }
+
+  @media (max-width: 550px) {
+    .details{
+      font-size: 0.8rem !important;
+      line-height: 0.8rem !important;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .details{
+      font-size: 0.6rem !important;
+      line-height: 0.6rem !important;
+    }
+  }

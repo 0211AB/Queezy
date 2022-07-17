@@ -6,7 +6,7 @@ const Quiz = (props) => {
   const navigate = useNavigate();
   const { state } = useLocation();
   const res = state.data;
-  //console.log(res);
+  console.log(res);
   const secs = res.time.split(":")[1] ? res.time.split(":")[1] : 59;
   const mins =
     secs === 59 ? res.time.split(":")[0] - 1 : res.time.split(":")[0];
@@ -19,6 +19,51 @@ const Quiz = (props) => {
   const [answers, setanswers] = useState({});
   const [times, setTimes] = useState({});
   const [results, setResults] = useState(null);
+
+  const [allsecs, setallsecs] = useState(parseInt(mins) * 60 + parseInt(secs));
+
+  const [minxs, setminxs] = useState(mins);
+  const [secxs, setsecxs] = useState(secs);
+  const [helper, sethelper] = useState(0);
+
+  const handle = () => {
+    setallsecs(allsecs - 1);
+    if (allsecs == 0) submitHandler();
+    else {
+      let altmins = Math.floor(allsecs / 60).toString();
+      if (altmins.length == 1) altmins = "0" + altmins;
+      let altsecs = (allsecs % 60).toString();
+      if (altsecs.length == 1) altsecs = "0" + altsecs;
+      setminxs(altmins);
+      setsecxs(altsecs);
+    }
+  };
+
+  useEffect(() => {
+    let altmins = Math.floor(allsecs / 60).toString();
+    if (altmins.length == 1) altmins = "0" + altmins;
+    let altsecs = (allsecs % 60).toString();
+    if (altsecs.length == 1) altsecs = "0" + altsecs;
+    setminxs(altmins);
+    setsecxs(altsecs);
+    console.log(minxs);
+    console.log(secxs)
+    return () => {
+      if (window.performance) {
+        if (performance.navigation.type == 1) {
+          alert("reloaded encountered, Submitting the test");
+          props.submithandler();
+        }
+      }
+    };
+  });
+
+  useEffect(() => {
+    sethelper(setInterval(handle, 1000));
+    return () => {
+      clearInterval(helper);
+    };
+  }, [allsecs]);
 
   const shuffleArray = (array) => {
     for (var i = array.length - 1; i > 0; i--) {
@@ -33,6 +78,7 @@ const Quiz = (props) => {
 
   useEffect(() => {
     async function sendResults() {
+      console.log(results);
       const res = await fetch("http://localhost:8000/result-score", {
         method: "POST",
         body: JSON.stringify(results),
@@ -42,14 +88,17 @@ const Quiz = (props) => {
       });
 
       const datares = await res.json();
-      console.log(datares)
+      console.log(datares);
 
       if (res.status === 400) {
         alert(`${JSON.stringify(datares.Error)}`);
       }
 
       if (res.status === 201) {
-        navigate(`/results/${datares.savedRes._id}`, { state:datares, replace: true });
+        navigate(`/results/${datares.savedRes._id}`, {
+          state: datares,
+          replace: true,
+        });
       }
     }
 
@@ -164,7 +213,7 @@ const Quiz = (props) => {
           </div>
           <div className="quiz_timer">
             <span className="time">
-              {mins}:{secs}
+              {minxs}:{secxs}
             </span>
           </div>
         </div>

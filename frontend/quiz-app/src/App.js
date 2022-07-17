@@ -6,7 +6,8 @@ import AdminPanel from "./Components/AdminPanel/AdminPanel";
 import AdminLogin from "./Components/AdminLogin/AdminLogin";
 import AdminSignup from "./Components/AdminSignup/AdminSignup";
 import QuizDetails from "./Components/QuizDetails/QuizDetails";
-import Result from './Components/Result/Result'
+import Result from "./Components/Result/Result";
+import Leaders from "./Components/LeaderBoard/Leaders"
 
 import AuthContext from "./Store/auth-context";
 
@@ -14,19 +15,22 @@ import "./App.css";
 import React from "react";
 import Quizzes from "./Components/Quizzes/Quizzes";
 import Quiz from "./Components/Quiz/Quiz";
+import LeaderBoard from "./Components/LeaderBoard/LeaderBoard";
 
 export const App = () => {
   const authCtx = useContext(AuthContext);
 
   return (
     <Routes>
-      <Route path="/" element={<Home />}></Route>
-      <Route path="/quizzes" element={<Quizzes />}></Route>
-      <Route path="quiz/:qid" element={<QuizDetails />}></Route>
-      <Route path="/admin/login" element={<AdminLogin />}></Route>
-      <Route path="/admin/signup" element={<AdminSignup />}></Route>
+      <Route exact path="/" element={<Home />}></Route>
+      <Route exact path="/quizzes" element={<Quizzes />}></Route>
+      <Route exact path="/quiz/:qid" element={<QuizDetails />}></Route>
+      <Route exact path="/admin/login" element={<AdminLogin />}></Route>
+      <Route exact path="/leaderboards" element={<LeaderBoard />} />
+      <Route exact path="/leaderboard" element={<Leaders />} />
+      <Route exact path="/admin/signup" element={<AdminSignup />}></Route>
       <Route
-        path="/admin/:id"
+        exact path="/admin/:id"
         element={
           authCtx.isLoggedIn ? (
             <AdminPanel val="1" />
@@ -36,7 +40,7 @@ export const App = () => {
         }
       ></Route>
       <Route
-        path="/admin/create/:id"
+        exact path="/admin/create/:id"
         element={
           authCtx.isLoggedIn ? (
             <AdminPanel val="2" />
@@ -46,7 +50,7 @@ export const App = () => {
         }
       ></Route>
       <Route
-        path="/admin/tests/:id"
+        exact path="/admin/tests/:id"
         element={
           authCtx.isLoggedIn ? (
             <AdminPanel val="3" />
@@ -56,7 +60,7 @@ export const App = () => {
         }
       ></Route>
       <Route
-        path="/admin/generate/:id"
+        exact path="/admin/generate/:id"
         element={
           authCtx.isLoggedIn ? (
             <AdminPanel val="1" />
@@ -66,7 +70,7 @@ export const App = () => {
         }
       ></Route>
       <Route
-        path="/admin/analytics/:id"
+        exact path="/admin/analytics/:id"
         element={
           authCtx.isLoggedIn ? (
             <AdminPanel val="4" />
@@ -75,8 +79,8 @@ export const App = () => {
           )
         }
       ></Route>
-      <Route path="qid/:id" element={<Quiz />}></Route>
-      <Route path="results/:id" element={<Result />}></Route>
+      <Route exact path="qid/:id" element={<Quiz />}></Route>
+      <Route exact path="results/:id" element={<Result />}></Route>
     </Routes>
   );
 };

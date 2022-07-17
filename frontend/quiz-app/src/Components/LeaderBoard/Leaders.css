@@ -1,0 +1,59 @@
+.board {
+    text-align: center;
+    padding:5rem;
+}
+
+.board .leaderboard{
+    margin-bottom: 1em;
+}
+
+.board .duration{
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+.active{
+    background-color: #5bacdf;
+    color: #5bacdf;
+}
+
+#profile{
+    /* display: flex; */
+    background:#5bacdf;
+    padding:2rem;
+    color:white;
+    margin-top: 3em;
+    border-radius: 3rem;
+}
+
+#profile .flex{
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    text-align: left;
+    margin-bottom: 2em;
+}
+
+#profile .flex .item{
+    display: flex;
+    align-items: center;
+    border-radius:3rem;
+    color:white;
+}
+
+#profile .flex img{
+    width: 20%;
+    border-radius: 50%;
+}
+
+#profile .flex .info{
+    color:white;
+    background: white;
+   padding: 1em;
+   border-radius:2rem;
+}
+
+.text-dark{
+    color: #5bacdf;
+}

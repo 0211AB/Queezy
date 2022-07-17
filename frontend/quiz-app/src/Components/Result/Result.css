@@ -1,4 +1,4 @@
-.container{
+.containerx{
     min-height: 100vh;
     background:#eee;
     display: flex;
@@ -6,7 +6,7 @@
     justify-content: center;
 }
 
-.btn{
+.btnx{
     color:#fff;
     background:#ff6933;
     box-shadow: 0 5px 10px rgba(0,0,0,.3);
@@ -14,11 +14,11 @@
     cursor: pointer;
 }
 
-.btn:hover{
+.btnx:hover{
     background:#ff4400;
 }
 
-.btn:active{
+.btnx:active{
     transform:scale(.90);
 }
 

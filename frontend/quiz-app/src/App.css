@@ -43,9 +43,7 @@ a {
   position: relative;
   padding: 1.7rem 0 2rem;
   width: 100%;
-  min-height: 100vh;
   overflow: hidden;
-  background-color: var(--backgroundColor);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -76,7 +74,7 @@ a {
 }
 
 
-@media screen and (max-width: 870px) {
+@media screen and (max-width: 900px) {
   .hamburger-menu {
     display: flex;
   }
@@ -132,18 +130,6 @@ a {
   .big-wrapper.active .overlay {
     pointer-events: all;
     opacity: 1;
-  }
-
-  .showcase-area {
-    padding: 2.5rem 0;
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
-  .showcase-area .container {
-    grid-template-columns: 1fr;
-    justify-content: center;
-    grid-gap: 2rem;
   }
 
   .big-title {

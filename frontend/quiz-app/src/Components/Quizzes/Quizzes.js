@@ -10,7 +10,7 @@ const Quizzes = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch(`http://localhost:8000/quiz/all`,
+      const res = await fetch(`http://localhost:8000/quizs/all`,
         {
           method: "GET",
           headers: {
@@ -19,7 +19,7 @@ const Quizzes = () => {
         });
 
       const datares = await res.json();
-      console.log(datares);
+      //console.log(datares);
       setData(datares);
     };
 
@@ -32,11 +32,11 @@ const Quizzes = () => {
       <Header />
       <div className="container ">
         <div className="big-title quizzes-title">
-          <h1 className='centred'>Some upcoming quizzes...</h1>
+          <h1 className='centered'>Some upcoming quizzes...</h1>
         </div>
       </div>
       <div className="box-container vertical-scroll">
-        {data!==null?data.map((item)=><QuizBox data={item}/>):<h1>No Upcoming Quizzes</h1>}
+        {data!==null?data.map((item,index)=><QuizBox key={index} data={item}/>):<h1>No Upcoming Quizzes</h1>}
       </div>
     </div>
   );

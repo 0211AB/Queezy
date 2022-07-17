@@ -7,8 +7,24 @@
   gap: 20px;
 }
 
-@media (max-width: 450px) {
+
+@media (max-width: 1200px) {
+  .box-container {
+    max-width: 800px;
+  }
+}
+
+@media (max-width: 650px) {
+  .box-container {
+    max-width: 500px;
+  }
+}
+
+
+@media (max-width: 350px) {
   .box-container {
     grid-template-columns: 1fr;
   }
 }
+
+

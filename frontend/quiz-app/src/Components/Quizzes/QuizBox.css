@@ -1,10 +1,10 @@
-.box-container .box {
+.box-container .qbox {
   background: #fff;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
   border-radius: 3rem;
 }
 
-.box-container .box h3 {
+.box-container .qbox h3 {
   font-size: 25px;
   padding: 17px 0;
   color: var(--darkOne);
@@ -12,23 +12,23 @@
   text-transform: capitalize;
 }
 
-.box-container .box .price {
+.box-container .qbox .price {
   color: #fff;
   background: #64bcf4;
   font-weight: bolder;
-  font-size: 50px;
+  font-size: 40px;
   text-align: center;
 }
 
-.box-container .box .price.year {
+.box-container .qbox .price.year {
   display: none;
 }
 
-.box-container .box .list {
+.box-container .qbox .list {
   margin: 15px 0;
 }
 
-.box-container .box .list p {
+.box-container .qbox .list p {
   text-align: center;
   padding: 7px 0;
   font-size: 17px;
@@ -39,7 +39,7 @@
   margin-top: 1rem;
 }
 
-.box-container .box .btn {
+.box-container .qbox .btn {
   margin: 20px;
   display: block;
   font-size: 17px;

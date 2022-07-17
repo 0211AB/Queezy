@@ -1,0 +1,112 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #a9d6e5;
+  }
+
+  .right-side{
+    width:100%;
+    display: flex;
+    justify-content:space-evenly;
+  }
+  .color-w{
+    color: #fff;
+  }
+
+  .quiz {
+    display: grid;
+    grid-template-rows: 30px auto;
+    width: 800px;
+    height: 600px;
+    background-color: transparent;
+    background: transparent;
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.3);
+    border-radius: 2rem;
+    opacity:0.9
+  }
+  
+  .quiz_header {
+    display: flex;
+    justify-content: space-between;
+    height:70px;
+    background-color: #fff;
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 2rem;
+    z-index: 1;
+  }
+
+  .quiz_body {
+    padding: 20px;
+    padding-top: 4rem;
+  }
+
+  .quiz_user {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding-left: 30px;
+  }
+  
+  .quiz_timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:relative;
+    right:10px;
+    top:7px;
+    width: 150px;
+    height:80%;
+    border-radius: 2rem;
+    background-color: #014f86;
+    color: #fff;
+  }
+  .quiz_body {
+    background-color: #ecf0f1;
+    border-radius: 2rem;
+  }
+  
+  .option_group {
+    list-style-type: none;
+    margin: 30px 0;
+  }
+  
+  .option {
+    display: block;
+    width:70%;
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 15px 20px;
+    border-radius: 100px;
+    border: 2px solid transparent;
+    transition: 0.4s all;
+  }
+  
+  .option:hover {
+    cursor: pointer;
+    background-color: #014f86;
+    border: 2px solid #014f86;
+    color: #fff;
+  }
+  
+  .btn-next {
+    border: none;
+    padding: 15px 35px;
+    background-color: #014f86;
+    color: #fff;
+    border-radius: 1.5rem;
+    transition: 0.4s all;
+    align-self:center;
+  }
+
+  .btn-submit{
+    background-color: #014f86;
+  }
+  
+ 
+  .btn-next:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 10px rgba(0, 0, 0, 0.1);
+  }

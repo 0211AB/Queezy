@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const {v4 : uuidv4} = require('uuid')
 
 const Schema = mongoose.Schema;
 
@@ -8,6 +9,9 @@ const quizSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Admin",
       required: true,
+    },
+    uuid:{
+      type:String,
     },
     amount: {
       type: String,
@@ -54,6 +58,14 @@ const quizSchema = new Schema(
   },
   { timestamps: true }
 );
+
+quizSchema.pre("save", async function (next) {
+  const userId = uuidv4()
+  this.uuid = userId.toString().replace("-","").substring(0,8);
+  console.log(this.uuid)
+  next();
+});
+
 
 const Quiz = mongoose.model("quiz", quizSchema);
 

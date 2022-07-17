@@ -28,7 +28,7 @@ app.use(bodyParser.json())
 
 
 app.use(adminRoutes)
-//app.use(quizRoutes)
+app.use(quizRoutes)
 
 app.listen(port, () => {
     console.log("App is running on port ", port)

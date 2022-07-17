@@ -77,36 +77,53 @@ router.post("/admin/generate-test", auth, async (req, res) => {
       params: {
         amount: amount,
         category: topic,
+        type:'multiple'
       },
     });
 
-   //console.log(fetchData.data.results);
+    //console.log(fetchData.data.results);
 
     const quizData = {
       creator: req.body.id,
       amount,
       topic,
       time,
-      expiry:duration,
+      expiry: duration,
       questions: fetchData.data.results,
     };
 
     //console.log(quizData);
 
     const quiz = new Quiz(quizData);
-    const saved_quiz=await quiz.save();
-        
-    res.status(201).json({"Task":"1"});
+    const saved_quiz = await quiz.save();
+
+    res.status(201).json({ Task: "1" });
   } catch (e) {
+    console.log(e)
+    res.status(404).json(e);
+  }
+});
+
+router.post("/admin/create-test", auth, async (req, res) => {
+  try {
+    const quizData = req.body;
+
+    const quiz = new Quiz(quizData);
+    const saved_quiz = await quiz.save();
+    //console.log(saved_quiz)
+
+    res.status(201).json({ Task: "1" });
+  } catch (e) {
+    //console.log(e)
     res.status(404).json(e);
   }
 });
 
 router.get("/admin/get-tests/:id", auth, async (req, res) => {
-  const id=req.params.id
-  const data=await Quiz.find({creator:id})
+  const id = req.params.id;
+  const data = await Quiz.find({ creator: id });
   //console.log(data)
-  res.status(201).json(data)
-})
+  res.status(201).json(data);
+});
 
 module.exports = router;

@@ -29,16 +29,16 @@ const topics = [
   ];
 
 const TestAccordian = (props) => {
-    console.log(props)
+    //console.log(props)
   return (
     <div>
         <input type="radio" name="example_accordion" id="section1" className="accordion__input" />
         <label htmlFor="section1" className="accordion__label"> Quiz Expires On {props.data.expiry.split('T')[0]}</label>
         <div className="accordion__content">
-          <p>Quiz ID : {props.data._id.substring(0,6)}</p>
+          <p>Quiz ID : {props.data.uuid}</p>
           <p>Duration: {props.data.time} minutes.<br/>
             Number of Questions: {props.data.amount} <br/>
-            Topic : {topics[props.data.topic].name}<br/>
+            Topic : {topics[props.data.topic]!==undefined?topics[props.data.topic].name:props.data.topic}<br/>
             </p>
         </div>
     </div>

@@ -33,7 +33,7 @@ const Tests = () => {
   
   console.log(data.length)
   return (
-    <div className="accordion">
+    <div className="accordion no-scroll">
       {data.length === 0 ? <h1>No Quizzes to show!!!!</h1> : data.map(item => <TestAccordian data={item}/>)}
     </div>
   );

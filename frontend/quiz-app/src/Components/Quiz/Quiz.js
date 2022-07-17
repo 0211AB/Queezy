@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Quiz.css";
 
 const Quiz = (props) => {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const res = state.data;
   //console.log(res);
   const secs = res.time.split(":")[1] ? res.time.split(":")[1] : 59;
-  const mins = secs == 59 ? res.time.split(":")[0] - 1 : res.time.split(":")[0];
+  const mins =
+    secs === 59 ? res.time.split(":")[0] - 1 : res.time.split(":")[0];
   const length = Math.min(res.amount, 50);
   const name = res.name;
   const [prevDate, setPrevDate] = useState(Date.now());
@@ -16,6 +18,7 @@ const Quiz = (props) => {
   const [question, setquestion] = useState("");
   const [answers, setanswers] = useState({});
   const [times, setTimes] = useState({});
+  const [results, setResults] = useState(null);
 
   const shuffleArray = (array) => {
     for (var i = array.length - 1; i > 0; i--) {
@@ -27,6 +30,31 @@ const Quiz = (props) => {
     }
     return array;
   };
+
+  useEffect(() => {
+    async function sendResults() {
+      const res = await fetch("http://localhost:8000/result-score", {
+        method: "POST",
+        body: JSON.stringify(results),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const datares = await res.json();
+      console.log(datares)
+
+      if (res.status === 400) {
+        alert(`${JSON.stringify(datares.Error)}`);
+      }
+
+      if (res.status === 201) {
+        navigate(`/results/${datares.savedRes._id}`, { replace: true });
+      }
+    }
+
+    if (results !== null) sendResults();
+  }, [results]);
 
   const entities = {
     "&#039;": "'",
@@ -92,15 +120,13 @@ const Quiz = (props) => {
       }
     }
 
-    
-
-    console.log(times)
-    console.log(score);
-    console.log(questionsCorrect);
+    // console.log(times);
+    // console.log(score);
+    // console.log(questionsCorrect);
+    setResults({ times, score, questionsCorrect, id: res._id, name });
   };
 
   const changeclass = (e) => {
-    console.log(e);
     var domele = e.nativeEvent.path;
     domele = domele.reverse();
     const ele = domele.reverse()[0];
@@ -115,7 +141,6 @@ const Quiz = (props) => {
 
     ele.classList.add("active");
     const ans = e.target.innerHTML;
-    console.log(answers);
     const time = Date.now() - prevDate;
     setTimes({
       ...times,

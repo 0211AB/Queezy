@@ -21,11 +21,9 @@ const resultSchema = new Schema({
       type: String,
     },
   ],
-  timePerAnswer: [
-    {
-      type: String,
-    },
-  ],
+  timePerAnswer: {
+    type: Object,
+  },
 });
 
 const Result = mongoose.model("result", resultSchema);
